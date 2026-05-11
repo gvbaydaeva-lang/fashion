@@ -5,9 +5,9 @@ export function Footer() {
     <footer className="border-t border-ink/10 bg-ink text-paper/90">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-3">
         <div>
-          <p className="font-serif text-lg tracking-widest">FASHION NIGHT</p>
+          <p className="font-serif text-lg tracking-widest">ELISTA FASHION SHOW</p>
           <p className="mt-2 max-w-xs text-sm text-paper/60">
-            Независимый фэшн-ивент. Билеты продаются через официальный сайт.
+            Официальный раздел билетов сайта мероприятия.
           </p>
         </div>
         <div>
@@ -37,7 +37,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-paper/10 py-4 text-center text-xs text-paper/50">
-        © {new Date().getFullYear()} Fashion Night. Демо-репозиторий.
+        © {new Date().getFullYear()} ELISTA FASHION SHOW.
       </div>
     </footer>
   );

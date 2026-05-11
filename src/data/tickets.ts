@@ -9,38 +9,27 @@ export type TicketTier = {
 };
 
 export const EVENT = {
-  title: "FASHION NIGHT",
-  subtitle: "Весенний показ и afterparty",
-  date: "2026-06-14T19:00:00+03:00",
-  dateLabel: "14 июня 2026, 19:00",
-  venue: "Loft «Серебряный», Москва, ул. Рочдельская, 15",
-  tagline: "Показ коллекций, музыка, бар и нетворкинг в одном вечере.",
+  title: "ELISTA FASHION SHOW",
+  subtitle: "Первый масштабный межрегиональный fashion-показ в Калмыкии.",
+  date: "2026-05-23T19:00:00+03:00",
+  dateLabel: "23 мая 2026 • Элиста",
+  venue: "ВК «Агро-Тег», Элиста",
+  tagline: "Мода, масштаб и новая энергия Калмыкии.",
 } as const;
 
+/** Единый тариф, как на лендинге */
 export const TICKET_TIERS: TicketTier[] = [
   {
-    id: "standard",
-    name: "Standard",
-    priceRub: 3500,
-    description: "Вход на показ и welcome drink.",
-    perks: ["Место в зале", "Welcome drink", "Доступ к бару"],
-  },
-  {
-    id: "vip",
-    name: "VIP",
-    priceRub: 8900,
-    description: "Лучшие места и встреча с дизайнерами.",
-    perks: ["Ряды 1–3", "2 напитка", "Meet & greet", "Подарочный lookbook"],
-    limited: true,
-    remaining: 42,
-  },
-  {
-    id: "backstage",
-    name: "Backstage",
-    priceRub: 15000,
-    description: "Закулисье, фото и эксклюзивный сет.",
-    perks: ["Backstage tour", "Фото с моделями", "Private lounge", "Limited merch"],
-    limited: true,
-    remaining: 12,
+    id: "entrance",
+    name: "Входной билет",
+    priceRub: 1500,
+    description:
+      "Доступ к основной программе ELISTA FASHION SHOW: показы дизайнеров, медийная атмосфера, фото- и видеозоны, главный хедлайнер вечера.",
+    perks: [
+      "Показы дизайнеров",
+      "Медийная атмосфера",
+      "Фото- и видеозоны",
+      "Главный хедлайнер вечера",
+    ],
   },
 ];

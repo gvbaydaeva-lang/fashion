@@ -1,6 +1,6 @@
-# Fashion Night — продажа билетов
+# ELISTA FASHION SHOW — сайт и билеты
 
-Демонстрационный сайт на **Next.js 14** (App Router, TypeScript, Tailwind): лендинг фэшн-мероприятия, выбор тарифов, корзина в React Context, форма оформления и API-заглушка заказа.
+Демонстрационный проект на **Next.js 14** (App Router, TypeScript): лендинг **ELISTA FASHION SHOW** (вёрстка из `elista_fashion_show_landing_video_in_50.html`), раздел **билетов** (единый тариф 1500 ₽), корзина, оформление и API-заглушка заказа.
 
 ## Запуск
 
@@ -9,34 +9,34 @@ npm install
 npm run dev
 ```
 
-Откройте [http://localhost:3000](http://localhost:3000).
+Откройте [http://localhost:3000](http://localhost:3000) — лендинг. Билеты: [http://localhost:3000/tickets](http://localhost:3000/tickets).
 
-Сборка продакшена:
+Сборка:
 
 ```bash
 npm run build
 npm start
 ```
 
+## Медиа
+
+Положите файлы в `public/media/`:
+
+- `IMG_5690.MP4` — видео в блоке «50+»
+- `2026-05-11 17.36.42.jpg` — постер видео и превью для соцсетей (можно заменить своим снимком)
+
 ## Структура
 
 | Путь | Назначение |
 |------|------------|
-| `src/app/page.tsx` | Главная: герой, детали, расписание |
-| `src/app/tickets/page.tsx` | Тарифы билетов |
-| `src/app/checkout/page.tsx` | Оформление и отправка заказа |
-| `src/app/success/page.tsx` | Страница после успешного заказа |
-| `src/app/api/order/route.ts` | POST: валидация и номер заказа (без БД) |
-| `src/data/tickets.ts` | Данные события и тарифов |
-| `src/context/CartContext.tsx` | Корзина на клиенте |
+| `src/app/(elista)/page.tsx` | Лендинг ELISTA |
+| `src/styles/elista-landing.css` | Стили лендинга |
+| `src/app/(shop)/tickets/page.tsx` | Выбор билета |
+| `src/app/(shop)/checkout/page.tsx` | Оформление заказа |
+| `src/app/(shop)/success/page.tsx` | Успешный заказ |
+| `src/app/api/order/route.ts` | POST заказа (демо) |
+| `src/data/tickets.ts` | Событие и тарифы |
 
-## Что подключить для продакшена
+## Продакшен
 
-- Платёжный провайдер (ЮKassa, Stripe и т.д.).
-- База данных или CRM для заказов вместо in-memory в API.
-- Отправка email с QR/билетом (Resend, SendGrid, Unisender).
-- Юридические тексты вместо шаблона на `/legal`.
-
-## Лицензия
-
-Используйте код свободно для своего проекта.
+Платежи, БД/CRM, почта с билетом, юридические тексты на `/legal`.

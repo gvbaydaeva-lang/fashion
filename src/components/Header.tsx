@@ -21,7 +21,7 @@ export function Header() {
           href="/"
           className="font-serif text-xl tracking-[0.2em] text-ink sm:text-2xl"
         >
-          FASHION NIGHT
+          ELISTA FASHION SHOW
         </Link>
         <nav className="flex items-center gap-1 sm:gap-6">
           {nav.map(({ href, label }) => {

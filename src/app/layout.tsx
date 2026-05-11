@@ -1,32 +1,13 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
 import { CartProvider } from "@/context/CartContext";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
-import "./globals.css";
-
-const playfair = Playfair_Display({
-  subsets: ["latin", "cyrillic"],
-  variable: "--font-playfair",
-  display: "swap",
-});
-
-const inter = Inter({
-  subsets: ["latin", "cyrillic"],
-  variable: "--font-dm",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
-  title: "Fashion Night — билеты на фэшн-мероприятие",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
+  ),
+  title: "ELISTA FASHION SHOW 2026",
   description:
-    "Показ коллекций, afterparty и нетворкинг. Купите билеты на Fashion Night онлайн.",
-  openGraph: {
-    title: "Fashion Night — билеты",
-    description: "Весенний показ и вечеринка в Москве.",
-    locale: "ru_RU",
-    type: "website",
-  },
+    "Первый масштабный межрегиональный fashion-показ в Калмыкии. 23 мая 2026, Элиста.",
 };
 
 export default function RootLayout({
@@ -35,13 +16,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" className={`${playfair.variable} ${inter.variable}`}>
-      <body className="min-h-screen font-sans antialiased">
-        <CartProvider>
-          <Header />
-          <main className="min-h-[calc(100vh-4rem)]">{children}</main>
-          <Footer />
-        </CartProvider>
+    <html lang="ru">
+      <body className="min-h-screen antialiased">
+        <CartProvider>{children}</CartProvider>
       </body>
     </html>
   );
