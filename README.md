@@ -24,9 +24,12 @@ npm run build
 
 ## GitHub Pages
 
-1. **Settings → Pages → Build and deployment** — источник: **GitHub Actions** (не «Deploy from a branch» с README).
-2. Запушьте ветку `main`: сработает workflow [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml), соберётся проект и задеплоится артефакт из `out/`.
-3. Сайт: [https://gvbaydaeva-lang.github.io/fashion/](https://gvbaydaeva-lang.github.io/fashion/)
+Если открывается **README**, значит в репозитории включён **не тот** источник публикации.
+
+1. Откройте **Settings → Pages → Build and deployment**.
+2. В поле **Source** выберите **GitHub Actions** (не *Deploy from a branch* и не корень ветки `main` — там нет `index.html`, GitHub показывает README).
+3. Убедитесь, что workflow [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) есть в `main` и последний запуск завершился успешно (вкладка **Actions**).
+4. Сайт после деплоя: [https://gvbaydaeva-lang.github.io/fashion/](https://gvbaydaeva-lang.github.io/fashion/) — в корне лежит **`index.html`** из папки **`out/`** сборки Next.js.
 
 Для корректных абсолютных ссылок в метаданных при сборке в CI задано `NEXT_PUBLIC_SITE_URL`. Локально можно задать то же значение или `http://localhost:3000/fashion`.
 

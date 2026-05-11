@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { assetUrl } from "@/lib/assetUrl";
 
 export default function ElistaLandingPage() {
@@ -20,9 +19,9 @@ export default function ElistaLandingPage() {
           <a href="#program">Что будет</a>
           <a href="#tickets">Билет</a>
         </nav>
-        <Link className="btn" href="/tickets">
+        <a className="btn" href="#tickets">
           Купить билет
-        </Link>
+        </a>
       </header>
 
       <main id="top">
@@ -40,14 +39,12 @@ export default function ElistaLandingPage() {
               Первый масштабный межрегиональный fashion-показ в Калмыкии.
             </p>
             <p className="hero-text">
-              Один вечер, где мода, культура, бизнес и медийность встретятся на одной
-              площадке. 50+ моделей, дизайнеры из разных регионов, яркие показы и
-              атмосфера события, о котором заговорят все.
+              Один вечер, где мода, культура, бизнес и медийность встретятся на одной площадке. 50+ моделей, дизайнеры из разных регионов, яркие показы и атмосфера события, о котором заговорят все.
             </p>
             <div className="hero-actions">
-              <Link className="btn" href="/tickets">
+              <a className="btn" href="#tickets">
                 Купить билет
-              </Link>
+              </a>
             </div>
           </div>
 
@@ -69,26 +66,16 @@ export default function ElistaLandingPage() {
           <div className="section-label">Стирая границы</div>
           <h2>Новая fashion-история региона начинается здесь</h2>
           <p className="lead">
-            ELISTA FASHION SHOW объединит дизайнеров, бренды, предпринимателей,
-            бьюти-индустрию, творческие сообщества и зрителей, которые хотят стать
-            частью большого культурного события.
+            ELISTA FASHION SHOW объединит дизайнеров, бренды, предпринимателей, бьюти-индустрию, творческие сообщества и зрителей, которые хотят стать частью большого культурного события.
           </p>
 
           <div className="grid">
             <div className="card card-video">
-              <video
-                src={assetUrl("/media/IMG_5690.MP4")}
-                poster={assetUrl("/media/2026-05-11%2017.36.42.jpg")}
-                autoPlay
-                muted
-                loop
-                playsInline
-              />
+              <video src={assetUrl("/media/IMG_5690.MP4")} autoPlay muted loop playsInline />
               <div className="card-video-content">
                 <strong>50+</strong>
                 <span>
-                  моделей: дети, подростки и взрослые женщины разных возрастов и
-                  параметров
+                  моделей: дети, подростки и взрослые женщины разных возрастов и параметров
                 </span>
               </div>
             </div>
@@ -111,17 +98,13 @@ export default function ElistaLandingPage() {
           <div className="section-label">Что вас ждёт</div>
           <h2>Это больше, чем показ</h2>
           <p className="lead">
-            Один вечер, где мода становится языком культуры, самовыражения и нового
-            уровня для Калмыкии.
+            Один вечер, где мода становится языком культуры, самовыражения и нового уровня для Калмыкии.
           </p>
 
           <div className="program">
             <div className="program-item">
               <h3>Модные показы</h3>
-              <p>
-                Коллекции локальных и приглашённых дизайнеров, новые имена, яркие
-                образы и сильные визуальные решения.
-              </p>
+              <p>Коллекции локальных и приглашённых дизайнеров, новые имена, яркие образы и сильные визуальные решения.</p>
             </div>
             <div className="program-item">
               <h3>Медийная атмосфера</h3>
@@ -133,10 +116,7 @@ export default function ElistaLandingPage() {
             </div>
             <div className="program-item">
               <h3>Нетворкинг</h3>
-              <p>
-                Место встречи дизайнеров, брендов, предпринимателей, beauty-сферы и
-                активного городского сообщества.
-              </p>
+              <p>Место встречи дизайнеров, брендов, предпринимателей, beauty-сферы и активного городского сообщества.</p>
             </div>
           </div>
         </section>
@@ -145,9 +125,7 @@ export default function ElistaLandingPage() {
           <div className="section-label">Главная интрига вечера</div>
           <h2>Хедлайнер уже готовится к выходу</h2>
           <div className="secret-box">
-            Имя хедлайнера пока засекречено. Но скажем одно — этот специальный гость
-            точно вызовет множество эмоций и станет одним из самых обсуждаемых моментов
-            вечера.
+            Имя хедлайнера пока засекречено. Но скажем одно — этот специальный гость точно вызовет множество эмоций и станет одним из самых обсуждаемых моментов вечера.
           </div>
         </section>
 
@@ -155,8 +133,7 @@ export default function ElistaLandingPage() {
           <div className="section-label">Площадка</div>
           <h2>ВК «Агро-Тег» — пространство, где fashion выходит на новый уровень</h2>
           <p className="lead">
-            23 мая 2026 года Элиста станет точкой притяжения для тех, кто вдохновлён
-            модой, стилем, творчеством и культурой.
+            23 мая 2026 года Элиста станет точкой притяжения для тех, кто вдохновлён модой, стилем, творчеством и культурой.
           </p>
         </section>
 
@@ -164,16 +141,14 @@ export default function ElistaLandingPage() {
           <div className="section-label">Билет</div>
           <h2>Займите своё место в эпицентре событий</h2>
           <p className="lead">
-            На мероприятие действует единый входной билет. Количество мест ограничено —
-            лучше купить заранее.
+            На мероприятие действует единый входной билет. Количество мест ограничено — лучше купить заранее.
           </p>
 
           <div className="ticket-single">
             <div>
               <h3>Входной билет</h3>
               <p>
-                Доступ к основной программе ELISTA FASHION SHOW: показы дизайнеров,
-                медийная атмосфера, фото- и видеозоны, главный хедлайнер вечера.
+                Доступ к основной программе ELISTA FASHION SHOW: показы дизайнеров, медийная атмосфера, фото- и видеозоны, главный хедлайнер вечера.
               </p>
             </div>
             <div className="ticket-price">
@@ -183,9 +158,9 @@ export default function ElistaLandingPage() {
           </div>
 
           <div style={{ marginTop: 28 }}>
-            <Link className="btn" href="/tickets">
+            <a className="btn" href="#">
               Купить билет
-            </Link>
+            </a>
           </div>
         </section>
 
@@ -193,9 +168,9 @@ export default function ElistaLandingPage() {
           <div className="section-label">ELISTA FASHION SHOW 2026</div>
           <h2>Станьте частью события, о котором будет говорить город</h2>
           <p className="lead">23 мая. Элиста. ВК «Агро-Тег». Мода, масштаб и новая энергия Калмыкии.</p>
-          <Link className="btn" href="/tickets">
+          <a className="btn" href="#tickets">
             Купить билет
-          </Link>
+          </a>
         </section>
       </main>
 
