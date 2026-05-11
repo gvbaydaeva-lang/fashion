@@ -1,9 +1,12 @@
+"use client";
+
 import Link from "next/link";
+import { Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 
-type Props = { searchParams: { order?: string } };
-
-export default function SuccessPage({ searchParams }: Props) {
-  const orderId = searchParams.order ?? "—";
+function SuccessContent() {
+  const searchParams = useSearchParams();
+  const orderId = searchParams.get("order") ?? "—";
 
   return (
     <div className="mx-auto max-w-lg px-4 py-20 text-center sm:px-6">
@@ -26,5 +29,19 @@ export default function SuccessPage({ searchParams }: Props) {
         На главную
       </Link>
     </div>
+  );
+}
+
+export default function SuccessPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="mx-auto max-w-lg px-4 py-20 text-center text-muted">
+          Загрузка…
+        </div>
+      }
+    >
+      <SuccessContent />
+    </Suspense>
   );
 }

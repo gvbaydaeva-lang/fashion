@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
+import { createDemoOrder } from "@/lib/demoOrder";
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -29,15 +30,13 @@ export default function CheckoutPage() {
     };
 
     try {
-      const res = await fetch("/api/order", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Ошибка сервера");
+      const result = createDemoOrder(payload);
+      if (!result.ok) {
+        setError(result.error);
+        return;
+      }
       clear();
-      router.push(`/success?order=${encodeURIComponent(data.orderId)}`);
+      router.push(`/success?order=${encodeURIComponent(result.orderId)}`);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Не удалось оформить заказ");
     } finally {
@@ -73,7 +72,8 @@ export default function CheckoutPage() {
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
       <h1 className="font-serif text-4xl text-ink">Оформление</h1>
       <p className="mt-2 text-muted">
-        Демо-форма: оплата не списывается, заказ сохраняется в памяти сервера до перезапуска.
+        Демо-форма: оплата не списывается, номер заказа создаётся в браузере (статический
+        сайт на GitHub Pages).
       </p>
 
       <div className="mt-10 grid gap-10 lg:grid-cols-5">
@@ -168,8 +168,8 @@ export default function CheckoutPage() {
             <span>{formatPrice(totalRub)}</span>
           </p>
           <p className="mt-4 text-xs text-muted">
-            В продакшене здесь будет виджет банка или Stripe. Сейчас API просто
-            возвращает номер заказа.
+            В продакшене здесь будет виджет банка или Stripe. Сейчас демо создаёт номер
+            заказа без сервера.
           </p>
         </aside>
       </div>

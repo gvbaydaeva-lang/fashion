@@ -1,42 +1,49 @@
 # ELISTA FASHION SHOW — сайт и билеты
 
-Демонстрационный проект на **Next.js 14** (App Router, TypeScript): лендинг **ELISTA FASHION SHOW** (вёрстка из `elista_fashion_show_landing_video_in_50.html`), раздел **билетов** (единый тариф 1500 ₽), корзина, оформление и API-заглушка заказа.
+Next.js 14 (App Router), статический экспорт для **GitHub Pages** (`basePath: /fashion`).
 
-## Запуск
+## Локальная разработка
+
+Сайт открывается с префиксом `/fashion`:
 
 ```bash
 npm install
 npm run dev
 ```
 
-Откройте [http://localhost:3000](http://localhost:3000) — лендинг. Билеты: [http://localhost:3000/tickets](http://localhost:3000/tickets).
+Адрес: [http://localhost:3000/fashion/](http://localhost:3000/fashion/)
 
-Сборка:
+## Сборка (`out/`)
 
 ```bash
+export NEXT_PUBLIC_SITE_URL=https://gvbaydaeva-lang.github.io/fashion
 npm run build
-npm start
 ```
+
+Результат в папке **`out/`** — её содержимое публикуется на GitHub Pages.
+
+## GitHub Pages
+
+1. **Settings → Pages → Build and deployment** — источник: **GitHub Actions** (не «Deploy from a branch» с README).
+2. Запушьте ветку `main`: сработает workflow [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml), соберётся проект и задеплоится артефакт из `out/`.
+3. Сайт: [https://gvbaydaeva-lang.github.io/fashion/](https://gvbaydaeva-lang.github.io/fashion/)
+
+Для корректных абсолютных ссылок в метаданных при сборке в CI задано `NEXT_PUBLIC_SITE_URL`. Локально можно задать то же значение или `http://localhost:3000/fashion`.
 
 ## Медиа
 
-Положите файлы в `public/media/`:
-
-- `IMG_5690.MP4` — видео в блоке «50+»
-- `2026-05-11 17.36.42.jpg` — постер видео и превью для соцсетей (можно заменить своим снимком)
+Файлы в `public/media/` попадают в `out/media/` с префиксом `/fashion/media/...` в HTML.
 
 ## Структура
 
 | Путь | Назначение |
 |------|------------|
-| `src/app/(elista)/page.tsx` | Лендинг ELISTA |
-| `src/styles/elista-landing.css` | Стили лендинга |
-| `src/app/(shop)/tickets/page.tsx` | Выбор билета |
-| `src/app/(shop)/checkout/page.tsx` | Оформление заказа |
-| `src/app/(shop)/success/page.tsx` | Успешный заказ |
-| `src/app/api/order/route.ts` | POST заказа (демо) |
-| `src/data/tickets.ts` | Событие и тарифы |
+| `next.config.mjs` | `output: 'export'`, `basePath`, `assetPrefix`, `images.unoptimized` |
+| `src/app/(elista)/page.tsx` | Лендинг (`assetUrl` для видео и постера) |
+| `src/lib/assetUrl.ts` | Префикс для путей к `public/` |
+| `src/lib/demoOrder.ts` | Демо-заказ без API (статический хостинг) |
+| `public/.nojekyll` | Отключает Jekyll на GitHub Pages |
 
 ## Продакшен
 
-Платежи, БД/CRM, почта с билетом, юридические тексты на `/legal`.
+Платежи и бэкенд — отдельный хостинг; на GitHub Pages только статика.

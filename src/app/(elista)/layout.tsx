@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import "@/styles/elista-landing.css";
 
+const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://gvbaydaeva-lang.github.io/fashion"
+).replace(/\/$/, "");
+
 export const metadata: Metadata = {
   title: "ELISTA FASHION SHOW 2026",
   description:
@@ -10,7 +14,11 @@ export const metadata: Metadata = {
     description: "23 мая. Элиста. ВК «Агро-Тег».",
     locale: "ru_RU",
     type: "website",
-    images: [{ url: "/media/2026-05-11%2017.36.42.jpg" }],
+    images: [
+      {
+        url: `${siteUrl}/media/2026-05-11%2017.36.42.jpg`,
+      },
+    ],
   },
 };
 

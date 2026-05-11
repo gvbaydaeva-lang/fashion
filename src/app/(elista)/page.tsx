@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { assetUrl } from "@/lib/assetUrl";
 
 export default function ElistaLandingPage() {
   return (
@@ -76,8 +77,8 @@ export default function ElistaLandingPage() {
           <div className="grid">
             <div className="card card-video">
               <video
-                src="/media/IMG_5690.MP4"
-                poster="/media/2026-05-11%2017.36.42.jpg"
+                src={assetUrl("/media/IMG_5690.MP4")}
+                poster={assetUrl("/media/2026-05-11%2017.36.42.jpg")}
                 autoPlay
                 muted
                 loop
