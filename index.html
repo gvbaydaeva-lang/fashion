@@ -123,11 +123,9 @@
 
     .hero {
       min-height: 100vh;
+      min-height: 100svh;
       position: relative;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) clamp(200px, 36vw, 540px);
-      align-items: center;
-      column-gap: clamp(10px, 2.2vw, 36px);
+      display: block;
       padding: 118px 6vw 72px;
       overflow: hidden;
       background:
@@ -141,62 +139,54 @@
       position: absolute;
       inset: 0;
       background: linear-gradient(180deg, transparent 0%, transparent 58%, rgba(7, 7, 7, 0.88) 100%);
-      z-index: 1;
+      z-index: 2;
       pointer-events: none;
     }
 
     .hero-inner {
       position: relative;
-      z-index: 2;
-      max-width: 680px;
+      z-index: 5;
+      max-width: min(52vw, 640px);
+      padding-right: clamp(12px, 3vw, 36px);
     }
 
     .hero-content {
       position: relative;
-      z-index: 2;
+      z-index: 5;
       max-width: 720px;
     }
 
     .hero-visual {
-      position: relative;
+      position: absolute;
+      right: max(-10vw, -140px);
+      top: 50%;
+      transform: translateY(-50%);
+      width: min(100vw, 1180px);
+      height: min(94vh, 1120px);
       z-index: 1;
-      align-self: center;
-      justify-self: stretch;
-      min-height: min(78vh, 800px);
-      max-height: 86vh;
-      margin: 0 -2vw 0 0;
-      display: grid;
-      grid-template: 1fr / 1fr;
+      pointer-events: none;
+      margin: 0;
+      display: block;
     }
 
     .hero-visual img {
-      grid-area: 1 / 1;
-      z-index: 0;
       display: block;
       width: 100%;
       height: 100%;
-      min-height: min(78vh, 800px);
-      max-height: 86vh;
       object-fit: cover;
-      object-position: 14% center;
-      filter: brightness(0.96) contrast(1.03) saturate(0.98);
-      -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.45) 14%, #000 32%);
-      mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.45) 14%, #000 32%);
-    }
-
-    .hero-visual::before {
-      content: "";
-      grid-area: 1 / 1;
-      z-index: 2;
-      pointer-events: none;
-      background:
-        linear-gradient(90deg, rgba(7, 7, 7, 0.5) 0%, rgba(7, 7, 7, 0.06) 34%, transparent 55%),
-        linear-gradient(180deg, rgba(7, 7, 7, 0.16) 0%, transparent 22%, transparent 70%, rgba(7, 7, 7, 0.22) 100%),
-        radial-gradient(ellipse 85% 95% at 70% 48%, rgba(191, 145, 82, 0.07), transparent 58%);
+      object-position: 10% 20%;
+      filter: brightness(0.98) contrast(1.06);
     }
 
     .hero-content h1 {
-      text-shadow: 0 2px 48px rgba(0, 0, 0, 0.42);
+      text-shadow:
+        0 0 1px rgba(7, 7, 7, 0.95),
+        0 2px 36px rgba(0, 0, 0, 0.88),
+        0 6px 64px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-content .eyebrow {
+      text-shadow: 0 1px 16px rgba(0, 0, 0, 0.7), 0 0 1px rgba(7, 7, 7, 0.9);
     }
 
     .eyebrow {
@@ -238,7 +228,14 @@
     }
 
     .hero-content .hero-subtitle {
-      text-shadow: 0 2px 28px rgba(0, 0, 0, 0.35);
+      text-shadow:
+        0 0 1px rgba(7, 7, 7, 0.9),
+        0 2px 24px rgba(0, 0, 0, 0.75),
+        0 4px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    .hero-content .hero-text {
+      text-shadow: 0 1px 14px rgba(0, 0, 0, 0.65), 0 0 1px rgba(7, 7, 7, 0.85);
     }
 
     .hero-text {
@@ -654,26 +651,22 @@
       }
 
       .hero {
-        grid-template-columns: 1fr minmax(140px, 34vw);
-        column-gap: 14px;
         padding-top: 112px;
-        align-items: start;
+      }
+
+      .hero-inner {
+        max-width: min(56vw, 520px);
       }
 
       .hero-visual {
-        min-height: auto;
-        max-height: none;
-        margin: 0;
-        align-self: start;
-        padding-top: 6px;
+        right: max(-14vw, -120px);
+        width: min(108vw, 1020px);
+        height: min(90vh, 1000px);
+        top: 52%;
       }
 
       .hero-visual img {
-        min-height: min(52vh, 420px);
-        max-height: min(52vh, 420px);
-        object-position: 6% 22%;
-        -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 10%, #000 26%);
-        mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 10%, #000 26%);
+        object-position: 8% 18%;
       }
 
       .grid {
@@ -705,24 +698,30 @@
       }
 
       .hero {
-        grid-template-columns: 1fr minmax(100px, 30vw);
-        padding: 100px 16px 52px;
-        align-items: start;
-        column-gap: 12px;
+        padding: 96px 16px 44px;
+        min-height: 100svh;
+      }
+
+      .hero-inner {
+        max-width: 100%;
       }
 
       .hero::after {
-        background: linear-gradient(180deg, transparent 0%, transparent 52%, rgba(7, 7, 7, 0.82) 100%);
+        background: linear-gradient(180deg, transparent 0%, transparent 46%, rgba(7, 7, 7, 0.92) 100%);
       }
 
       .hero-visual {
-        padding-top: 4px;
+        right: -22%;
+        top: 10vh;
+        transform: none;
+        width: 122%;
+        height: min(76vh, 640px);
       }
 
       .hero-visual img {
-        min-height: min(44vh, 360px);
-        max-height: min(44vh, 360px);
-        object-position: 4% 18%;
+        object-position: 6% 10%;
+        transform: scale(1.12);
+        transform-origin: 52% 14%;
       }
 
       .headline-secret {
@@ -795,6 +794,9 @@
 
     <main id="top">
       <section class="hero">
+        <aside class="hero-visual" aria-hidden="true">
+          <img src="assets/hero-model.png" alt="" width="1200" height="1600" loading="eager" decoding="async" />
+        </aside>
         <div class="hero-inner">
           <div class="hero-content">
             <div class="eyebrow">23 мая 2026 • Элиста</div>
@@ -806,9 +808,6 @@
             </div>
           </div>
         </div>
-        <aside class="hero-visual" aria-hidden="true">
-          <img src="assets/hero-editorial.png" alt="" width="720" height="960" loading="eager" decoding="async" />
-        </aside>
       </section>
 
       <section id="about">
@@ -819,14 +818,14 @@
         <div class="grid">
           <article class="card card--media card--media-50">
             <div class="card-media-content">
-              <strong>50+</strong>
-              <span>моделей: дети, подростки и взрослые женщины разных возрастов и параметров</span>
+              <strong>100+</strong>
+              <span>моделей: Дети, подростки и взрослые женщины разных возрастов и параметров</span>
             </div>
           </article>
           <article class="card card--media card--media-designers">
             <div class="card-media-content">
               <strong>Дизайнеры</strong>
-              <span>локальные и приглашённые авторы из разных регионов</span>
+              <span>локальные и приглашенные бренды из разных регионов</span>
             </div>
           </article>
           <article class="card card--media card--media-guests">
