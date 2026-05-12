@@ -11,6 +11,9 @@
 /.next/
 /out/
 
+# локальная проверка статического деплоя (workflow собирает в CI)
+/site/
+
 # production
 /build
 

@@ -1,52 +1,41 @@
 # ELISTA FASHION SHOW — сайт и билеты
 
-Next.js 14 (App Router), статический экспорт для **GitHub Pages** (`basePath: /fashion`).
+В репозитории два уровня:
 
-## Локальная разработка
+- **GitHub Pages** — публикуется **только статика**: точная копия [`elista_fashion_show_landing_video_in_50.html`](elista_fashion_show_landing_video_in_50.html) как `index.html` + `IMG_5690.MP4` рядом (см. [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml)). **Next.js для Pages не собирается.**
+- **Next.js** — опционально для локальной разработки (`npm run dev`) и раздела билетов.
 
-Сайт открывается с префиксом `/fashion`:
+## GitHub Pages (лендинг 1-в-1 с HTML-файлом)
+
+1. **Settings → Pages → Build and deployment → Source: GitHub Actions**
+2. После успешного workflow: [https://gvbaydaeva-lang.github.io/fashion/](https://gvbaydaeva-lang.github.io/fashion/)
+
+В артефакт попадает папка `site/` из CI: `index.html` — байт-в-байт копия `elista_fashion_show_landing_video_in_50.html`, видео — `IMG_5690.MP4` (относительный путь в HTML не меняется).
+
+Если открывается **README**, источник Pages не **GitHub Actions**, либо workflow не прошёл (вкладка **Actions**).
+
+## Локальная разработка Next.js
 
 ```bash
 npm install
 npm run dev
 ```
 
-Адрес: [http://localhost:3000/fashion/](http://localhost:3000/fashion/)
+С префиксом `/fashion`: [http://localhost:3000/fashion/](http://localhost:3000/fashion/)
 
-## Сборка (`out/`)
+## Сборка Next (папка `out/`)
 
 ```bash
 export NEXT_PUBLIC_SITE_URL=https://gvbaydaeva-lang.github.io/fashion
 npm run build
 ```
 
-Результат в папке **`out/`** — её содержимое публикуется на GitHub Pages.
+Используется для локального/альтернативного деплоя Next; **GitHub Pages в этом репозитории настроен на чистый HTML из workflow выше.**
 
-## GitHub Pages
+## Медиа для лендинга
 
-Если открывается **README**, значит в репозитории включён **не тот** источник публикации.
-
-1. Откройте **Settings → Pages → Build and deployment**.
-2. В поле **Source** выберите **GitHub Actions** (не *Deploy from a branch* и не корень ветки `main` — там нет `index.html`, GitHub показывает README).
-3. Убедитесь, что workflow [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) есть в `main` и последний запуск завершился успешно (вкладка **Actions**).
-4. Сайт после деплоя: [https://gvbaydaeva-lang.github.io/fashion/](https://gvbaydaeva-lang.github.io/fashion/) — в корне лежит **`index.html`** из папки **`out/`** сборки Next.js.
-
-Для корректных абсолютных ссылок в метаданных при сборке в CI задано `NEXT_PUBLIC_SITE_URL`. Локально можно задать то же значение или `http://localhost:3000/fashion`.
-
-## Медиа
-
-Файлы в `public/media/` попадают в `out/media/` с префиксом `/fashion/media/...` в HTML.
-
-## Структура
-
-| Путь | Назначение |
-|------|------------|
-| `next.config.mjs` | `output: 'export'`, `basePath`, `assetPrefix`, `images.unoptimized` |
-| `src/app/(elista)/page.tsx` | Лендинг (`assetUrl` для видео и постера) |
-| `src/lib/assetUrl.ts` | Префикс для путей к `public/` |
-| `src/lib/demoOrder.ts` | Демо-заказ без API (статический хостинг) |
-| `public/.nojekyll` | Отключает Jekyll на GitHub Pages |
+- Исходник видео в репозитории: `public/media/IMG_5690.MP4` (копируется в корень сайта как `IMG_5690.MP4` для деплоя).
 
 ## Продакшен
 
-Платежи и бэкенд — отдельный хостинг; на GitHub Pages только статика.
+Платежи и бэкенд — отдельный хостинг; на GitHub Pages только статический лендинг из файла.

@@ -1,7 +1,7 @@
-# Публикация содержимого папки `out/` в GitHub Pages.
+# Статический лендинг 1-в-1 с `elista_fashion_show_landing_video_in_50.html` (без Next.js).
+# В артефакт попадает только: index.html (точная копия файла) + IMG_5690.MP4 + .nojekyll
 #
-# Обязательно: Settings → Pages → Build and deployment → Source: GitHub Actions
-# (не «Deploy from a branch» — иначе будет показываться README из корня репозитория).
+# Settings → Pages → Build and deployment → Source: GitHub Actions
 name: Deploy GitHub Pages
 
 on:
@@ -28,22 +28,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: npm
+      - name: Assemble static site (exact HTML + media)
+        run: |
+          set -euo pipefail
+          mkdir -p site
+          cp "elista_fashion_show_landing_video_in_50.html" "site/index.html"
+          cp "public/media/IMG_5690.MP4" "site/IMG_5690.MP4"
+          touch "site/.nojekyll"
+          cmp -s "elista_fashion_show_landing_video_in_50.html" "site/index.html"
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build static export
-        run: npm run build
-        env:
-          NEXT_PUBLIC_SITE_URL: https://gvbaydaeva-lang.github.io/fashion
-
-      - name: Verify index.html
-        run: test -f out/index.html && ls -la out/index.html
+      - name: Verify landing index.html (not README, not Next)
+        run: |
+          set -euo pipefail
+          test -f site/index.html
+          grep -q "ELISTA FASHION SHOW 2026" site/index.html
+          grep -q 'src="IMG_5690.MP4"' site/index.html
+          ! grep -q "_next" site/index.html || (echo "ERROR: Next.js output leaked into index.html" && exit 1)
+          ! grep -qi "<!-- readme" site/index.html || true
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
@@ -51,7 +52,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: ./site
 
       - name: Deploy to GitHub Pages
         id: deployment
