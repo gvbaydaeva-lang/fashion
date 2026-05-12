@@ -7,12 +7,19 @@
 
 ## GitHub Pages (лендинг 1-в-1 с HTML-файлом)
 
-1. **Settings → Pages → Build and deployment → Source: GitHub Actions**
-2. После успешного workflow: [https://gvbaydaeva-lang.github.io/fashion/](https://gvbaydaeva-lang.github.io/fashion/)
+В корне репозитория лежат **`index.html`** (байт-в-байт копия [`elista_fashion_show_landing_video_in_50.html`](elista_fashion_show_landing_video_in_50.html)), **`IMG_5690.MP4`** и **`.nojekyll`**, чтобы при публикации **из ветки** GitHub Pages отдавал статический лендинг, а не Jekyll/README.
 
-В артефакт попадает папка `site/` из CI: `index.html` — байт-в-байт копия `elista_fashion_show_landing_video_in_50.html`, видео — `IMG_5690.MP4` (относительный путь в HTML не меняется).
+1. **Settings → Pages** — либо **GitHub Actions** (workflow собирает папку `site/`), либо **Deploy from a branch** → корень `main` (тогда используются файлы в корне репозитория).
+2. После деплоя: [https://gvbaydaeva-lang.github.io/fashion/](https://gvbaydaeva-lang.github.io/fashion/)
 
-Если открывается **README**, источник Pages не **GitHub Actions**, либо workflow не прошёл (вкладка **Actions**).
+При правках исходного файла `elista_fashion_show_landing_video_in_50.html` синхронизируйте корень:
+
+```bash
+cp elista_fashion_show_landing_video_in_50.html index.html
+cp public/media/IMG_5690.MP4 ./IMG_5690.MP4
+```
+
+Если открывается **README**, в корне нет `index.html` или не выбран корректный источник публикации / не обновлён деплой.
 
 ## Локальная разработка Next.js
 

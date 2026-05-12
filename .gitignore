@@ -22,6 +22,7 @@
 /*.webp
 /*.mp4
 /*.MP4
+!/IMG_5690.MP4
 /preview*.html
 
 # misc
