@@ -15,6 +15,7 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 84px;
     }
 
     body {
@@ -746,6 +747,19 @@
         text-shadow: 0 1px 16px rgba(0, 0, 0, 0.55), 0 0 1px rgba(7, 7, 7, 0.85);
       }
 
+      /* Абзац hero: шире по горизонтали, меньше «столбик»; допускается заход на низ портрета */
+      .hero-content .hero-text {
+        max-width: none;
+        width: auto;
+        margin-right: calc(-1 * min(26vw, 112px));
+        line-height: 1.52;
+        font-size: 15px;
+        text-shadow:
+          0 0 1px rgba(7, 7, 7, 0.92),
+          0 1px 12px rgba(0, 0, 0, 0.75),
+          0 2px 24px rgba(0, 0, 0, 0.5);
+      }
+
       .headline-secret {
         padding: 72px 20px 70px;
       }
@@ -841,7 +855,7 @@
           <article class="card card--media card--media-50">
             <div class="card-media-content">
               <strong>100+</strong>
-              <span>моделей: Дети, подростки и взрослые женщины разных возрастов и параметров</span>
+              <span>моделей: дети, подростки и взрослые женщины разных возрастов и параметров</span>
             </div>
           </article>
           <article class="card card--media card--media-designers">
@@ -925,7 +939,7 @@
         </div>
 
         <div style="margin-top: 28px;">
-          <a class="btn" href="#">Купить билет</a>
+          <a class="btn" href="https://checkout.tochka.com/f47502da-f2a9-4860-88dd-6e3a40a20299" target="_blank" rel="noopener noreferrer">Купить билет</a>
         </div>
       </section>
 
