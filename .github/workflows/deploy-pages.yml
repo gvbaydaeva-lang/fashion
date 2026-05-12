@@ -1,5 +1,5 @@
-# Статический лендинг 1-в-1 с `elista_fashion_show_landing_video_in_50.html` (без Next.js).
-# В артефакт попадает только: index.html (точная копия файла) + IMG_5690.MP4 + .nojekyll
+# Статический лендинг: index.html + медиа (без Next.js).
+# В артефакт: index.html (копия elista), IMG_5690.MP4, assets/*.png, .nojekyll
 #
 # Settings → Pages → Build and deployment → Source: GitHub Actions
 name: Deploy GitHub Pages
@@ -31,9 +31,11 @@ jobs:
       - name: Assemble static site (exact HTML + media)
         run: |
           set -euo pipefail
-          mkdir -p site
+          mkdir -p site/assets
           cp "elista_fashion_show_landing_video_in_50.html" "site/index.html"
           cp "public/media/IMG_5690.MP4" "site/IMG_5690.MP4"
+          cp "assets/hero-editorial.png" "site/assets/hero-editorial.png"
+          cp "assets/headliner-teaser.png" "site/assets/headliner-teaser.png"
           touch "site/.nojekyll"
           cmp -s "elista_fashion_show_landing_video_in_50.html" "site/index.html"
 
@@ -43,6 +45,7 @@ jobs:
           test -f site/index.html
           grep -q "ELISTA FASHION SHOW 2026" site/index.html
           grep -q 'src="IMG_5690.MP4"' site/index.html
+          grep -q 'assets/hero-editorial.png' site/index.html
           ! grep -q "_next" site/index.html || (echo "ERROR: Next.js output leaked into index.html" && exit 1)
           ! grep -qi "<!-- readme" site/index.html || true
 

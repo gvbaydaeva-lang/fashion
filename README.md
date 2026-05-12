@@ -2,12 +2,12 @@
 
 В репозитории два уровня:
 
-- **GitHub Pages** — публикуется **только статика**: точная копия [`elista_fashion_show_landing_video_in_50.html`](elista_fashion_show_landing_video_in_50.html) как `index.html` + `IMG_5690.MP4` рядом (см. [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml)). **Next.js для Pages не собирается.**
+- **GitHub Pages** — публикуется **только статика**: [`elista_fashion_show_landing_video_in_50.html`](elista_fashion_show_landing_video_in_50.html) как `index.html`, рядом **`IMG_5690.MP4`**, папка **`assets/`** (изображения hero и хедлайнера). См. [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml). **Next.js для Pages не собирается.**
 - **Next.js** — опционально для локальной разработки (`npm run dev`) и раздела билетов.
 
 ## GitHub Pages (лендинг 1-в-1 с HTML-файлом)
 
-В корне репозитория лежат **`index.html`** (байт-в-байт копия [`elista_fashion_show_landing_video_in_50.html`](elista_fashion_show_landing_video_in_50.html)), **`IMG_5690.MP4`** и **`.nojekyll`**, чтобы при публикации **из ветки** GitHub Pages отдавал статический лендинг, а не Jekyll/README.
+В корне репозитория лежат **`index.html`** (копия [`elista_fashion_show_landing_video_in_50.html`](elista_fashion_show_landing_video_in_50.html)), **`IMG_5690.MP4`**, папка **`assets/`** и **`.nojekyll`**, чтобы при публикации **из ветки** GitHub Pages отдавал статический лендинг, а не Jekyll/README.
 
 1. **Settings → Pages** — либо **GitHub Actions** (workflow собирает папку `site/`), либо **Deploy from a branch** → корень `main` (тогда используются файлы в корне репозитория).
 2. После деплоя: [https://gvbaydaeva-lang.github.io/fashion/](https://gvbaydaeva-lang.github.io/fashion/)
@@ -17,6 +17,7 @@
 ```bash
 cp elista_fashion_show_landing_video_in_50.html index.html
 cp public/media/IMG_5690.MP4 ./IMG_5690.MP4
+# папка assets/ — картинки лежат в репозитории; при замене обновите файлы там и закоммитьте
 ```
 
 Если открывается **README**, в корне нет `index.html` или не выбран корректный источник публикации / не обновлён деплой.

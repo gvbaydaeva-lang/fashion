@@ -124,10 +124,8 @@
     .hero {
       min-height: 100vh;
       position: relative;
-      display: grid;
-      grid-template-columns: 0.92fr 1.08fr;
-      align-items: center;
-      padding: 118px 6vw 70px;
+      display: block;
+      padding: 118px 6vw 80px;
       overflow: hidden;
       background:
         radial-gradient(circle at 22% 34%, rgba(245, 241, 234, 0.08), transparent 28%),
@@ -140,15 +138,69 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(90deg, #070707 0%, rgba(7,7,7,0.88) 37%, rgba(7,7,7,0.2) 100%),
-        linear-gradient(180deg, transparent 55%, #070707 100%);
+        linear-gradient(90deg, #070707 0%, rgba(7, 7, 7, 0.78) 40%, rgba(7, 7, 7, 0.12) 68%, rgba(7, 7, 7, 0.5) 100%),
+        linear-gradient(180deg, transparent 0%, transparent 58%, #070707 100%);
       z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 1.06fr) minmax(240px, 0.5fr);
+      gap: clamp(20px, 4vw, 56px);
+      align-items: center;
+      max-width: 1320px;
+      margin: 0 auto;
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
       max-width: 720px;
+    }
+
+    .hero-visual {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-visual-frame {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(214, 180, 116, 0.24);
+      box-shadow:
+        0 32px 90px rgba(0, 0, 0, 0.55),
+        0 0 0 1px rgba(0, 0, 0, 0.35) inset,
+        0 0 60px rgba(191, 145, 82, 0.08);
+      aspect-ratio: 3 / 4;
+      max-height: min(82vh, 860px);
+    }
+
+    .hero-visual-frame img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 22% center;
+      filter: grayscale(0.12) contrast(1.06) brightness(0.86);
+      transform: scale(1.04);
+    }
+
+    .hero-visual-frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(7, 7, 7, 0.52) 0%, rgba(7, 7, 7, 0.06) 46%, rgba(7, 7, 7, 0.38) 100%),
+        linear-gradient(180deg, rgba(7, 7, 7, 0.22) 0%, transparent 38%, rgba(7, 7, 7, 0.52) 100%);
+      pointer-events: none;
+    }
+
+    .hero-content h1 {
+      text-shadow: 0 2px 48px rgba(0, 0, 0, 0.42);
     }
 
     .eyebrow {
@@ -189,6 +241,10 @@
       color: #fff9ef;
     }
 
+    .hero-content .hero-subtitle {
+      text-shadow: 0 2px 28px rgba(0, 0, 0, 0.35);
+    }
+
     .hero-text {
       max-width: 570px;
       color: rgba(245,241,234,0.76);
@@ -202,36 +258,6 @@
       flex-wrap: wrap;
       gap: 14px;
       align-items: center;
-    }
-
-    .date-panel {
-      position: absolute;
-      right: 6vw;
-      top: 128px;
-      z-index: 2;
-      width: min(310px, 36vw);
-      padding: 24px;
-      border-radius: 28px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(214,180,116,0.26);
-      backdrop-filter: blur(16px);
-      box-shadow: 0 24px 80px rgba(0,0,0,0.28);
-    }
-
-    .date-panel strong {
-      display: block;
-      font-size: clamp(46px, 6vw, 82px);
-      line-height: 0.85;
-      font-weight: 800;
-      letter-spacing: -0.06em;
-      color: #f1d49b;
-    }
-
-    .date-panel span {
-      display: block;
-      margin-top: 14px;
-      color: rgba(245,241,234,0.72);
-      line-height: 1.45;
     }
 
     section {
@@ -420,30 +446,65 @@
     }
 
     .headline-secret {
-      padding: 86px 6vw;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(191,145,82,0.28), transparent 36%),
-        #070707;
+      position: relative;
+      isolation: isolate;
+      padding: 104px 6vw 96px;
       text-align: center;
       border-top: 1px solid rgba(214,180,116,0.14);
       border-bottom: 1px solid rgba(214,180,116,0.14);
+      overflow: hidden;
+    }
+
+    .headline-secret::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        linear-gradient(180deg, rgba(7, 7, 7, 0.82) 0%, rgba(7, 7, 7, 0.42) 42%, rgba(7, 7, 7, 0.9) 100%),
+        linear-gradient(90deg, rgba(7, 7, 7, 0.35), rgba(7, 7, 7, 0.65)),
+        url("assets/headliner-teaser.png") center center / cover no-repeat;
+      filter: saturate(0.95) contrast(1.04);
+      transform: scale(1.04);
+    }
+
+    .headline-secret::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: radial-gradient(ellipse 90% 70% at 50% 40%, rgba(7, 7, 7, 0.15), rgba(7, 7, 7, 0.55) 100%);
+      pointer-events: none;
+    }
+
+    .headline-secret-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .headline-secret .section-label {
+      text-shadow: 0 2px 28px rgba(0, 0, 0, 0.75);
     }
 
     .headline-secret h2 {
       margin-left: auto;
       margin-right: auto;
+      text-shadow: 0 3px 36px rgba(0, 0, 0, 0.78);
     }
 
     .secret-box {
       max-width: 760px;
       margin: 30px auto 0;
       padding: 32px;
-      border: 1px solid rgba(214,180,116,0.28);
+      border: 1px solid rgba(214,180,116,0.34);
       border-radius: 28px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      background: linear-gradient(135deg, rgba(7, 7, 7, 0.58), rgba(7, 7, 7, 0.28));
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       font-size: 20px;
       line-height: 1.5;
-      color: rgba(245,241,234,0.82);
+      color: rgba(245,241,234,0.92);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
     }
 
     .ticket-single {
@@ -529,17 +590,19 @@
       }
 
       .hero {
-        grid-template-columns: 1fr;
         padding-top: 112px;
       }
 
-      .date-panel {
-        position: relative;
-        top: auto;
-        right: auto;
-        width: 100%;
-        max-width: 390px;
-        margin-top: 36px;
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .hero-visual-frame {
+        max-height: none;
+        aspect-ratio: 3 / 4;
+        max-width: min(440px, 100%);
+        margin: 0 auto;
       }
 
       .grid {
@@ -581,7 +644,16 @@
       }
 
       .hero::after {
-        background: linear-gradient(180deg, rgba(7,7,7,0.55), #070707 78%);
+        background: linear-gradient(180deg, rgba(7, 7, 7, 0.68) 0%, rgba(7, 7, 7, 0.28) 52%, #070707 100%);
+      }
+
+      .hero-visual-frame {
+        border-radius: 22px;
+        max-width: 100%;
+      }
+
+      .headline-secret {
+        padding: 72px 20px 70px;
       }
 
       h1 {
@@ -625,19 +697,21 @@
 
     <main id="top">
       <section class="hero">
-        <div class="hero-content">
-          <div class="eyebrow">23 мая 2026 • Элиста</div>
-          <h1>Elista<br>Fashion<br>Show</h1>
-          <p class="hero-subtitle">Первый масштабный межрегиональный fashion-показ в Калмыкии.</p>
-          <p class="hero-text">Один вечер, где мода, культура, бизнес и медийность встретятся на одной площадке. 50+ моделей, дизайнеры из разных регионов, яркие показы и атмосфера события, о котором заговорят все.</p>
-          <div class="hero-actions">
-            <a class="btn" href="#tickets">Купить билет</a>
+        <div class="hero-inner">
+          <div class="hero-content">
+            <div class="eyebrow">23 мая 2026 • Элиста</div>
+            <h1>Elista<br>Fashion<br>Show</h1>
+            <p class="hero-subtitle">Первый масштабный межрегиональный fashion-показ в Калмыкии.</p>
+            <p class="hero-text">Один вечер, где мода, культура, бизнес и медийность встретятся на одной площадке. 50+ моделей, дизайнеры из разных регионов, яркие показы и атмосфера события, о котором заговорят все.</p>
+            <div class="hero-actions">
+              <a class="btn" href="#tickets">Купить билет</a>
+            </div>
           </div>
-        </div>
-
-        <div class="date-panel">
-          <strong>23<br>мая</strong>
-          <span>ВК «Агро-Тег»<br>Элиста</span>
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-frame">
+              <img src="assets/hero-editorial.png" alt="" width="720" height="960" loading="eager" decoding="async" />
+            </div>
+          </aside>
         </div>
       </section>
 
@@ -695,9 +769,11 @@
       </section>
 
       <section class="headline-secret">
-        <div class="section-label">Главная интрига вечера</div>
-        <h2>Хедлайнер уже готовится к выходу</h2>
-        <div class="secret-box">Имя хедлайнера пока засекречено. Но скажем одно — этот специальный гость точно вызовет множество эмоций и станет одним из самых обсуждаемых моментов вечера.</div>
+        <div class="headline-secret-content">
+          <div class="section-label">Главная интрига вечера</div>
+          <h2>Хедлайнер уже готовится к выходу</h2>
+          <div class="secret-box">Имя хедлайнера пока засекречено. Но скажем одно — этот специальный гость точно вызовет множество эмоций и станет одним из самых обсуждаемых моментов вечера.</div>
+        </div>
       </section>
 
       <section id="place">
