@@ -179,6 +179,18 @@
       filter: brightness(0.98) contrast(1.06);
     }
 
+    /* Desktop / large tablet: модель правее, меньше пустоты справа; mobile не трогаем */
+    @media (min-width: 981px) {
+      .hero-visual {
+        right: max(-17vw, -210px);
+        transform: translateY(calc(-50% + 12px));
+      }
+
+      .hero-visual img {
+        object-position: 14% 22%;
+      }
+    }
+
     .hero-content h1 {
       text-shadow:
         0 0 1px rgba(7, 7, 7, 0.95),
